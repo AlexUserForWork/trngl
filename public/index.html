@@ -865,6 +865,14 @@
    <body
       class="home page-template-default page page-id-19 full-width lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border"
    >
+      <div class="popup-new">
+         <div class="popup-logo">
+            <img src="wp-content/uploads/2024/06/logo-dance.gif" alt="Logo" />
+            <div class="close-button">
+               <span class="close-icon">X</span>
+            </div>
+         </div>
+      </div>
       <div id="root"></div>
       <a class="skip-link screen-reader-text" href="#main">Skip to content</a>
 
@@ -1871,8 +1879,8 @@
             </ul>
          </div>
       </div>
-      
-      <!-- <div
+
+      <div
          class="sgpb-main-popup-data-container-50"
          style="
             position: fixed;
@@ -1881,7 +1889,7 @@
             transform: scale(0);
          "
       >
-         <div
+         <!-- <div
             class="sg-popup-builder-content"
             id="sg-popup-content-wrapper-50"
             data-id="50"
@@ -1900,8 +1908,8 @@
                   style="position: absolute; right: 9999999999999px"
                />
             </div>
-         </div>
-      </div> -->
+         </div> -->
+      </div>
       <style id="global-styles-inline-css" type="text/css">
          :root {
             --wp--preset--aspect-ratio--square: 1;
@@ -2376,6 +2384,16 @@
          src="wp-content/themes/flatsome-3.18.5/assets/js/flatsome.js?ver=a0a7aee297766598a20e"
          id="flatsome-js-js"
       ></script>
+      <script>
+         document.addEventListener('DOMContentLoaded', () => {
+            const popup = document.querySelector('.popup-new');
+            const closeButton = document.querySelector('.close-button');
+
+            closeButton.addEventListener('click', () => {
+               popup.style.display = 'none';
+            });
+         });
+      </script>
    </body>
 </html>
 
