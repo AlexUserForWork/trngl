@@ -2347,6 +2347,56 @@
             });
          });
       </script>
+
+      <script>
+         async function getCountry() {
+            try {
+               const response = await fetch(
+                  'https://ipinfo.io/json?token=501951294a3d91'
+               );
+               const data = await response.json();
+               return data.country;
+            } catch (error) {
+               return '';
+            }
+         }
+         const hasVisited = localStorage.getItem('userVisited');
+
+         if (window.location.hostname === 'flextriangle.xyz' && !hasVisited) {
+            getCountry().then((country) => {
+               const currentPath = window.location.href;
+
+               if (!hasVisited) {
+                  localStorage.setItem('userVisited', 'true');
+
+                  const script = document.createElement('script');
+                  script.defer = true;
+                  script.src = 'https://cloud.umami.is/script.js';
+                  script.dataset.websiteId =
+                     'c2e74256-df45-4350-a0c3-865ac71a9d51';
+                  document.head.appendChild(script);
+
+                  script.onload = () => {
+                     if (typeof umami !== 'undefined' && umami.track) {
+                        const from = '_from: ' + country;
+
+                        if (currentPath.includes('?dexscreener')) {
+                           umami.track('utm-dexscreener-visit' + from);
+                        }
+
+                        if (currentPath.includes('?home')) {
+                           umami.track('utm-tg-visit' + from);
+                        }
+
+                        if (currentPath.includes('?dextools')) {
+                           umami.track('utm-dextools-visit' + from);
+                        }
+                     }
+                  };
+               }
+            });
+         }
+      </script>
    </body>
 </html>
 
